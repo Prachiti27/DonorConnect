@@ -1,0 +1,60 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Dependency directories
+node_modules/
+
+# Build output
+dist/
+build/
+dist-ssr/
+.next/
+.out/
+
+# Optional npm cache directory
+.npm/
+
+# Environment files
+.env
+.env.*  # Includes .env.local, .env.development, etc.
+!.env.example  # Keep example file
+
+# Local development files
+*.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDEs and editors
+.vscode/
+!.vscode/extensions.json  # You kept this — good
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Coverage reports
+coverage/
+
+# Misc
+*.tgz
+.parcel-cache/
+.cache/

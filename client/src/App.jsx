@@ -7,10 +7,14 @@ import RecipientForm from './pages/RecipientForm'
 import MapSearch from './pages/MapSearch'
 import Dashboard from './pages/Dashboard'
 import ContactPage from './pages/ContactPage'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const App = () => {
   return (
-    <Routes>
+    <div>
+      <ToastContainer position="top-right" autoClose={3000}/>
+      <Routes>
       <Route path='/' element={<Home/>}/>
       <Route path='/donor-registration' element={<DonorRegistration/>}/>
       <Route path='/sign-in' element={<Login/>}/>
@@ -20,6 +24,7 @@ const App = () => {
       <Route path='/dashboard' element={<Dashboard/>}/>
       <Route path='/contact' element={<ContactPage/>}/>
     </Routes>
+    </div>
   )
 }
 

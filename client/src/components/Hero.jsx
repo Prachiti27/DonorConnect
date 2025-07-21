@@ -1,6 +1,5 @@
-import React from 'react'
 import HeroImage from '../assets/hero.webp'
-import { useNavigate } from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 
 const Hero = () => {
 
