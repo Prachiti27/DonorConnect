@@ -4,6 +4,8 @@ import connectDB from './config/db.js'
 import 'dotenv/config'
 import userRouter from './routes/userRoute.js'
 import registerRouter from './routes/registerRoute.js'
+import searchRouter from './routes/searchRoute.js'
+import emailRouter from './routes/emailRoutes.js'
 
 const app = express()
 const port = process.env.PORT || 4000
@@ -15,6 +17,8 @@ app.use(cors())
 
 app.use('/user',userRouter)
 app.use('/register',registerRouter)
+app.use('/search',searchRouter)
+app.use('/email',emailRouter)
 
 app.get('/',(req,res)=>{
     res.send("API Working")

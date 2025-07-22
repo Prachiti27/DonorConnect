@@ -1,21 +1,56 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from 'axios'
+import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
 
 const RecipientForm = () => {
+
+  const navigate = useNavigate();
+  const isLoggedIn = localStorage.getItem('token');
+
   const [formData, setFormData] = useState({
-    fullName: "",
-    gender: "",
-    bloodGroup: "",
-    location: "",
-    urgency: "normal",
+    contact: '',
+    gender: '',
+    bloodGroup: '',
+    location: '',
+    urgencyLevel:'normal'
   });
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate('/sign-in');
+    }
+  }, [isLoggedIn, navigate]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+
+    const token = localStorage.getItem('token')
+
     e.preventDefault();
-    console.log(formData); // Submit to backend
+
+    const contact = e.target.contact?.value
+    const gender = e.target.gender?.value
+    const bloodGroup = e.target.bloodGroup?.value
+    const urgencyLevel = e.target.urgencyLevel?.value
+    const location = e.target.location?.value
+
+    const endpoint = `${import.meta.env.VITE_BACKEND_URL}/register/recipient`
+
+    const payload = { contact, gender, bloodGroup, urgencyLevel, location }
+
+    try {
+      const res = await axios.post(endpoint, payload, { headers: { Authorization: `Bearer ${token}` } })
+      console.log('Response:', res)
+
+      toast.success("Recipient Registered sucessfully.")
+      navigate('/map-search')
+    } catch (error) {
+      toast.error(error.response?.data?.message || 'Something went wrong!')
+    }
   };
 
   return (
@@ -89,9 +124,9 @@ const RecipientForm = () => {
             Urgency Level
           </label>
           <select
-            name="urgency"
+            name="urgencyLevel"
             className="w-full px-4 py-2 border rounded-lg focus:outline-none border-primary text-black appearance-none placeholder:text-primary/50 bg-[url('data:image/svg+xml;utf8,<svg fill=\'red\' height=\'20\' viewBox=\'0 0 24 24\' width=\'20\' xmlns=\'http://www.w3.org/2000/svg\'><path d=\'M7 10l5 5 5-5z\'/></svg>')] bg-no-repeat bg-[right_1rem_center] bg-[length:1.25rem_1.25rem]"
-            value={formData.urgency}
+            value={formData.urgencyLevel}
             onChange={handleChange}
           >
             <option value="normal">Normal</option>
@@ -100,16 +135,16 @@ const RecipientForm = () => {
           </select>
         </div>
 
-         {/* Contact */}
+        {/* Contact */}
         <div>
           <label className="block mb-1 text-sm font-medium text-primary/75">
             Contact No
           </label>
           <input
             type="text"
-            name="fullName"
+            name="contact"
             className="w-full px-4 py-2 border rounded-lg focus:outline-none border-primary"
-            value={formData.fullName}
+            value={formData.contact}
             onChange={handleChange}
             required
           />

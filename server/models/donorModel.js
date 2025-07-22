@@ -8,7 +8,7 @@ const donorSchema = new mongoose.Schema({
     },
     bloodGroup: {
         type: String,
-        enum: ['A+','A-','B+','B-','O+','O-','AB+','AB-'],
+        enum: ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'],
         required: true
     },
     location: {
@@ -26,13 +26,17 @@ const donorSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    gender:{
+    coordinates: {
+        lat: Number,
+        lng: Number
+    },
+    gender: {
         type: String,
-        enum: ['Male','Female','Other'],
+        enum: ['male', 'female', 'other'],
         required: true
     }
 })
 
-const donorModel = mongoose.model('donor',donorSchema)
+const donorModel = mongoose.model('donor', donorSchema)
 
 export default donorModel

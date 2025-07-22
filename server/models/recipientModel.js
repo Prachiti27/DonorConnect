@@ -15,18 +15,18 @@ const recipientSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    phone: {
+    contact: {
         type: String,
         required: true
     },
     gender: {
         type: String,
-        enum: ['Male','Female','Other'],
+        enum: ['male','female','other'],
         required: true
     },
     urgencyLevel: {
         type: String,
-        enum: ['Normal','Urgent','Critical'],
+        enum: ['normal','urgent','critical'],
         required: true
     }
 })

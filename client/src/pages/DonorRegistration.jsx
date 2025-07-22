@@ -27,6 +27,9 @@ const DonorRegistration = () => {
   };
 
   const handleSubmit = async (e) => {
+
+    const token = localStorage.getItem('token')
+    
     e.preventDefault();
 
     const contact = e.target.contact?.value
@@ -41,7 +44,7 @@ const DonorRegistration = () => {
     const payload = { contact, gender, bloodGroup, lastDonationDate, availability, location }
 
     try {
-      const res = await axios.post(endpoint, payload)
+    const res = await axios.post(endpoint, payload,{headers:{Authorization:`Bearer ${token}`}})
       console.log('Response:',res)
 
       toast.success("Donor Registered sucessfully.")
