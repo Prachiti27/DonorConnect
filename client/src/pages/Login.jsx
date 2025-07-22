@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {useNavigate} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import Logo from '../assets/logo.png'
 import axios from 'axios'
 import { toast } from 'react-toastify'
@@ -40,7 +40,7 @@ const Login = () => {
       
     } catch (error) {
       console.error('Error:', error.response?.data?.message || error.message)
-      alert(error.response?.data?.message || 'Something went wrong!')
+      toast.error(error.response?.data?.message || 'Something went wrong!')
     }
   }
 
@@ -48,10 +48,10 @@ const Login = () => {
     <div className='min-h-screen flex items-center justify-center p-4'>
       <div className='w-full max-w-sm p-8 space-y-6 bg-white rounded-xl border border-primary shadow-md'>
         <div className='flex flex-col items-center'>
-          <div className='flex items-center mb-2'>
+          <Link to={'/'} className='flex items-center mb-2'>
             <img src={Logo} alt='logo' className='w-6 h-6' />
             <span className='text-2xl font-bold text-primary'>DonorConnect</span>
-          </div>
+          </Link>
 
           <h1 className='text-3xl font-bold text-transparent [-webkit-text-stroke:1.5px_#ef4444]'>
             {isSignUp ? 'Sign Up' : 'Sign In'}

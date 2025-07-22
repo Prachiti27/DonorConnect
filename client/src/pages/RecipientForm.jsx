@@ -24,20 +24,6 @@ const RecipientForm = () => {
         Recipient Registration
       </h2>
       <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Full Name */}
-        <div>
-          <label className="block mb-1 text-sm font-medium text-primary/75">
-            Full Name
-          </label>
-          <input
-            type="text"
-            name="fullName"
-            className="w-full px-4 py-2 border rounded-lg focus:outline-none border-primary"
-            value={formData.fullName}
-            onChange={handleChange}
-            required
-          />
-        </div>
 
         {/* Gender */}
         <div>
@@ -112,6 +98,21 @@ const RecipientForm = () => {
             <option value="urgent">Urgent</option>
             <option value="critical">Critical</option>
           </select>
+        </div>
+
+         {/* Contact */}
+        <div>
+          <label className="block mb-1 text-sm font-medium text-primary/75">
+            Contact No
+          </label>
+          <input
+            type="text"
+            name="fullName"
+            className="w-full px-4 py-2 border rounded-lg focus:outline-none border-primary"
+            value={formData.fullName}
+            onChange={handleChange}
+            required
+          />
         </div>
 
         {/* Submit */}
