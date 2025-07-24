@@ -1,24 +1,19 @@
-import jwt from "jsonwebtoken"
-import userModel from "../models/userModel.js"
+import jwt from 'jsonwebtoken'
 
-const requireAuth = async (req,res,next) => {
-    try {
-        const token = req.headers.authorization?.split(" ")[1]
+const requireAuth = (req, res, next) => {
+  const token = req.cookies.token
 
-        if(!token){
-            return res.json({success:false,message:"No token provided"})
-        }
+  if (!token) {
+    return res.status(401).json({ success: false, message: 'Unauthorized: No token provided' })
+  }
 
-        const decoded = jwt.verify(token,process.env.JWT_SECRET)
-        const user = await userModel.findById(decoded.id).select("-password")
-
-        if(!user) return res.json({success:false,message:"Invalid User"})
-        
-        req.user = user
-        next()
-    } catch (error) {
-        return res.json({success:false,message:"Unauthorised"})
-    }
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET)
+    req.user = decoded
+    next()
+  } catch (err) {
+    return res.status(401).json({ success: false, message: 'Unauthorized: Invalid token' })
+  }
 }
 
 export default requireAuth

@@ -1,11 +1,12 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify'
+import AuthContext from '../context/AuthContext';
 
 const DonorRegistration = () => {
   const navigate = useNavigate();
-  const isLoggedIn = localStorage.getItem('token');
+  const isLoggedIn = useContext(AuthContext)
 
   const [formData, setFormData] = useState({
     contact: '',
@@ -27,8 +28,6 @@ const DonorRegistration = () => {
   };
 
   const handleSubmit = async (e) => {
-
-    const token = localStorage.getItem('token')
     
     e.preventDefault();
 
@@ -44,7 +43,7 @@ const DonorRegistration = () => {
     const payload = { contact, gender, bloodGroup, lastDonationDate, availability, location }
 
     try {
-    const res = await axios.post(endpoint, payload,{headers:{Authorization:`Bearer ${token}`}})
+    const res = await axios.post(endpoint, payload,{withCredentials:true})
       console.log('Response:',res)
 
       toast.success("Donor Registered sucessfully.")

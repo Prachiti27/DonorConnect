@@ -1,46 +1,43 @@
-import React, { useState } from 'react'
-import {Link, useNavigate} from 'react-router-dom'
+import React, { useContext, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import Logo from '../assets/logo.png'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import AuthContext from '../context/AuthContext'
 
 
 const Login = () => {
 
   const [isSignUp, setIsSignUp] = useState(false)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [name, setName] = useState('')
 
   const navigate = useNavigate()
 
+  const { setIsLoggedIn } = useContext(AuthContext)
+
   const handleSubmit = async (e) => {
     e.preventDefault()
-
-    const name = e.target.name?.value
-    const email = e.target.email.value
-    const password = e.target.password.value
-
-    const endpoint = isSignUp
-      ? `${import.meta.env.VITE_BACKEND_URL}/user/sign-up`
-      : `${import.meta.env.VITE_BACKEND_URL}/user/sign-in`
-
-    const payload = isSignUp
-      ? { name, email, password }
-      : { email, password }
-
     try {
-      const res = await axios.post(endpoint, payload)
-      console.log('Response:', res.data)
 
-      if (res.data.token) {
-        localStorage.setItem('token', res.data.token)
+      if (isSignUp) {
+        await axios.post(
+          `${import.meta.env.VITE_BACKEND_URL}/user/sign-up`,
+          { name, email, password },
+          { withCredentials: true }
+        )
+        toast.success('Account created successfully!')
       }
 
-      toast.success(isSignUp ? 'Account created successfully!' : 'Logged in successfully!')
-
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/user/sign-in`, { email, password }, { withCredentials: true })
+      setIsLoggedIn(true)
+      toast.success('Logged in successfully')
       navigate('/')
-      
-    } catch (error) {
-      console.error('Error:', error.response?.data?.message || error.message)
-      toast.error(error.response?.data?.message || 'Something went wrong!')
+    }
+    catch (error) {
+      console.log(error)
+      toast.error('Log In failed')
     }
   }
 
@@ -61,7 +58,7 @@ const Login = () => {
           {
             isSignUp && (
               <div>
-                <label htmlFor='name' className='block mb-1 text-sm font-bold text-primary'>
+                <label htmlFor='name' onChange={(e) => setName(e.target.value)} className='block mb-1 text-sm font-bold text-primary'>
                   Name
                 </label>
                 <input type='text' id='name' name='name' className='w-full px-4 py-2 border border-primary rounded-lg focus:outline-none' required />
@@ -70,14 +67,14 @@ const Login = () => {
           }
 
           <div>
-            <label htmlFor='email' className='block mb-1 text-sm font-bold text-primary'>
+            <label htmlFor='email'  onChange={(e) => setEmail(e.target.value)} className='block mb-1 text-sm font-bold text-primary'>
               Email
             </label>
             <input type='email' id='email' name='email' className='w-full px-4 py-2 border border-primary rounded-lg focus:outline-none' required />
           </div>
 
           <div>
-            <label htmlFor='password' className='block mb-1 text-sm font-bold text-primary'>
+            <label htmlFor='password' onChange={(e) => setPassword(e.target.value)} className='block mb-1 text-sm font-bold text-primary'>
               Password
             </label>
             <input type='password' id='password' name='password' className='w-full px-4 py-2 border border-primary rounded-lg focus:outline-none' required />

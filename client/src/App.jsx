@@ -12,6 +12,7 @@ import PublicRoute from './components/PublicRoute'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import 'leaflet/dist/leaflet.css';
+import UpdateProfile from './pages/UpdateProfile'
 
 const App = () => {
   return (
@@ -32,6 +33,14 @@ const App = () => {
           element={
             <ProtectedRoute>
               <RecipientForm />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='/update-profile'
+          element={
+            <ProtectedRoute>
+              <UpdateProfile />
             </ProtectedRoute>
           }
         />

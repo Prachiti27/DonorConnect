@@ -1,18 +1,26 @@
-import { NavLink, useNavigate } from 'react-router-dom';
-import Logo from '../assets/logo.png';
-import { toast } from 'react-toastify';
+import { NavLink, useNavigate } from 'react-router-dom'
+import Logo from '../assets/logo.png'
+import { toast } from 'react-toastify'
+import { useContext } from 'react'
+import AuthContext from '../context/AuthContext'
+import axios from 'axios'
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const isLoggedIn = localStorage.getItem('token');
+  const {isLoggedIn,setIsLoggedIn} = useContext(AuthContext)
 
-  console.log(isLoggedIn)
-
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    toast.success('Logged out successfully!');
-    navigate('/');
-  };
+  const handleLogout = async () => {
+    try{
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/user/log-out`,{},{withCredentials:true})
+      setIsLoggedIn(false)
+      toast.success('Logged out successfully')
+      navigate('/')
+    }
+    catch(error){
+      console.error('Logout error:', error.response ? error.response.data : error.message)
+      toast.error('Logout failed!!!')
+    }
+  }
 
   return (
     <div className='flex px-6 md:px-20 py-10 justify-between'>
@@ -42,12 +50,14 @@ const Navbar = () => {
         ) : (
           <>
             <button
+              type="button"
               onClick={() => navigate('/sign-in')}
               className='bg-primary text-white font-semibold py-2 px-5 rounded-sm hover:bg-primary/80'
             >
               Login
             </button>
             <button
+              type="button"
               onClick={() => navigate('/sign-in')}
               className='bg-transparent border border-primary font-semibold text-primary py-2 px-5 rounded-sm hidden md:inline-flex hover:bg-primary/20'
             >
