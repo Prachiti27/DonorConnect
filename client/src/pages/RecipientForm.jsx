@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
+import AuthContext from "../context/AuthContext";
 
 const RecipientForm = () => {
 
   const navigate = useNavigate();
-  const isLoggedIn = localStorage.getItem('token');
+  const isLoggedIn = useContext(AuthContext);
 
   const [formData, setFormData] = useState({
     contact: '',
@@ -28,8 +29,6 @@ const RecipientForm = () => {
 
   const handleSubmit = async (e) => {
 
-    const token = localStorage.getItem('token')
-
     e.preventDefault();
 
     const contact = e.target.contact?.value
@@ -43,7 +42,7 @@ const RecipientForm = () => {
     const payload = { contact, gender, bloodGroup, urgencyLevel, location }
 
     try {
-      const res = await axios.post(endpoint, payload, { headers: { Authorization: `Bearer ${token}` } })
+      const res = await axios.post(endpoint, payload, {withCredentials:true})
       console.log('Response:', res)
 
       toast.success("Recipient Registered sucessfully.")

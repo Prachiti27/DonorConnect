@@ -58,26 +58,26 @@ const Login = () => {
           {
             isSignUp && (
               <div>
-                <label htmlFor='name' onChange={(e) => setName(e.target.value)} className='block mb-1 text-sm font-bold text-primary'>
+                <label htmlFor='name' className='block mb-1 text-sm font-bold text-primary'>
                   Name
                 </label>
-                <input type='text' id='name' name='name' className='w-full px-4 py-2 border border-primary rounded-lg focus:outline-none' required />
+                <input type='text' onChange={(e) => setName(e.target.value)} id='name' name='name' className='w-full px-4 py-2 border border-primary rounded-lg focus:outline-none' required />
               </div>
             )
           }
 
           <div>
-            <label htmlFor='email'  onChange={(e) => setEmail(e.target.value)} className='block mb-1 text-sm font-bold text-primary'>
+            <label htmlFor='email' className='block mb-1 text-sm font-bold text-primary'>
               Email
             </label>
-            <input type='email' id='email' name='email' className='w-full px-4 py-2 border border-primary rounded-lg focus:outline-none' required />
+            <input type='email' onChange={(e) => setEmail(e.target.value)} id='email' name='email' className='w-full px-4 py-2 border border-primary rounded-lg focus:outline-none' required />
           </div>
 
           <div>
-            <label htmlFor='password' onChange={(e) => setPassword(e.target.value)} className='block mb-1 text-sm font-bold text-primary'>
+            <label htmlFor='password'  className='block mb-1 text-sm font-bold text-primary'>
               Password
             </label>
-            <input type='password' id='password' name='password' className='w-full px-4 py-2 border border-primary rounded-lg focus:outline-none' required />
+            <input type='password'onChange={(e) => setPassword(e.target.value)} id='password' name='password' className='w-full px-4 py-2 border border-primary rounded-lg focus:outline-none' required />
           </div>
 
           <button type='submit' className='w-full py-2 mt-4 font-semibold text-white bg-primary rounded-lg hover:bg-primary/80 focus:outline-none hover:cursor-pointer'>
