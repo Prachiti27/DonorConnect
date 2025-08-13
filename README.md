@@ -13,12 +13,13 @@ DonorConnect is a full-stack MERN (MongoDB, Express, React, Node.js) application
 
 ## 📁 Project Structure
 
+```
 donorConnect/
-├── client/              # React frontend (running on port 5173)
+├── client/          # React frontend (running on port 5173)
 │   ├── src/
 │   ├── public/
 │   └── ...
-├── server/              # Express backend (running on port 4000)
+├── server/          # Express backend (running on port 4000)
 │   ├── controllers/
 │   ├── routes/
 │   ├── models/
@@ -26,6 +27,7 @@ donorConnect/
 ├── .env
 ├── README.md
 └── package.json
+```
 
 
 ## ⚙️ Setup Instructions
