@@ -41,10 +41,12 @@ cd server
 npm install
 
 #### Create `.env` file inside `/server`:
+```
 PORT=4000
 MONGO_URI=your_mongodb_connection_string
 EMAIL_USER=your_email@example.com
 EMAIL_PASS=your_email_password_or_app_password
+```
 
 Then start the server:
 
