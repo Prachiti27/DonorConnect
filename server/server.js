@@ -15,7 +15,7 @@ connectDB()
 
 app.use(express.json())
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: process.env.FRONTEND_URI,
     credentials: true,
 }))
 
@@ -26,10 +26,12 @@ app.use('/register', registerRouter)
 app.use('/search', searchRouter)
 app.use('/email', emailRouter)
 
-app.get('/', (req, res) => {
-    res.send("API Working")
-})
+if (process.env.NODE_ENV !== 'production') {
+    app.get('/', (req, res) => {
+        res.send("API Working")
+    })
 
-app.listen(port, () => {
-    console.log(`Server running in port : ${port}`)
-})
+    app.listen(port, () => {
+        console.log(`Server running in port : ${port}`)
+    })
+}
