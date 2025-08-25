@@ -14,9 +14,9 @@ const port = process.env.PORT || 4000
 connectDB()
 
 app.use(express.json())
-app.use(cors({
+app.options('*', cors({
     origin: process.env.FRONTEND_URI,
-    credentials: true,
+    credentials: true
 }))
 
 app.use(cookieParser())
