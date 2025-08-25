@@ -26,14 +26,12 @@ app.use('/register', registerRouter)
 app.use('/search', searchRouter)
 app.use('/email', emailRouter)
 
-if (process.env.NODE_ENV !== 'production') {
-    app.get('/', (req, res) => {
-        res.send("API Working")
-    })
+app.get('/', (req, res) => {
+    res.send("API Working")
+})
 
-    app.listen(port, () => {
-        console.log(`Server running in port : ${port}`)
-    })
-}
+app.listen(port, () => {
+    console.log(`Server running in port : ${port}`)
+})
 
 export default app
