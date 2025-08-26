@@ -19,7 +19,7 @@ app.use(cors({
     credentials: true,
 }))
 
-app.use(cookieParser())
+app.use(cookieParser(process.env.COOKIE_SECRET))
 
 app.use('/api/user', userRouter)
 app.use('/api/register', registerRouter)
