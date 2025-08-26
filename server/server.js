@@ -21,10 +21,10 @@ app.use(cors({
 
 app.use(cookieParser())
 
-app.use('/user', userRouter)
-app.use('/register', registerRouter)
-app.use('/search', searchRouter)
-app.use('/email', emailRouter)
+app.use('/api/user', userRouter)
+app.use('/api/register', registerRouter)
+app.use('/api/search', searchRouter)
+app.use('/api/email', emailRouter)
 
 app.get('/', (req, res) => {
     res.send("API Working")

@@ -37,7 +37,7 @@ const RecipientForm = () => {
     const urgencyLevel = e.target.urgencyLevel?.value
     const location = e.target.location?.value
 
-    const endpoint = `${import.meta.env.VITE_BACKEND_URL}/register/recipient`
+    const endpoint = `${import.meta.env.VITE_BACKEND_URL}/api/register/recipient`
 
     const payload = { contact, gender, bloodGroup, urgencyLevel, location }
 

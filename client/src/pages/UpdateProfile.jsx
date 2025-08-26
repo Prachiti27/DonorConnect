@@ -10,7 +10,7 @@ const UpdateProfile = () => {
 
   const getUserData = async () => {
     try {
-      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/user/profile`, {headers: {
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/user/profile`, {headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`
       }})
 
@@ -45,7 +45,7 @@ const UpdateProfile = () => {
     e.preventDefault();
     try {
       const res = await axios.put(
-        `${import.meta.env.VITE_BACKEND_URL}/user/update-profile`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/user/update-profile`,
         formData,
         { withCredentials: true }
       );

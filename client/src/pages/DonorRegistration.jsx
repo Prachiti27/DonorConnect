@@ -38,7 +38,7 @@ const DonorRegistration = () => {
     const availability = e.target.availability?.value
     const location = e.target.location?.value
 
-    const endpoint = `${import.meta.env.VITE_BACKEND_URL}/register/donor`
+    const endpoint = `${import.meta.env.VITE_BACKEND_URL}/api/register/donor`
 
     const payload = { contact, gender, bloodGroup, lastDonationDate, availability, location }
 

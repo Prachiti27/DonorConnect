@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         const checkAuth = async () => {
             try {
-                await axios.get(`${import.meta.env.VITE_BACKEND_URL}/user/me`, { withCredentials: true })
+                await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/user/me`, { withCredentials: true })
                 setIsLoggedIn(true)
             }
             catch (error) {
