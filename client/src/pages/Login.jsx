@@ -23,14 +23,14 @@ const Login = () => {
 
       if (isSignUp) {
         await axios.post(
-          `${import.meta.env.VITE_BACKEND_URL}/api/user/sign-up`,
+          `${import.meta.env.VITE_BACKEND_URL}/user/sign-up`,
           { name, email, password },
           { withCredentials: true }
         )
         toast.success('Account created successfully!')
       }
 
-      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/user/sign-in`, { email, password }, { withCredentials: true })
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/user/sign-in`, { email, password }, { withCredentials: true })
       setIsLoggedIn(true)
       toast.success('Logged in successfully')
       navigate('/')

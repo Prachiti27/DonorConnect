@@ -11,7 +11,7 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     try{
-      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/user/log-out`,{},{withCredentials:true})
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/user/log-out`,{},{withCredentials:true})
       setIsLoggedIn(false)
       toast.success('Logged out successfully')
       navigate('/')

@@ -19,12 +19,12 @@ app.use(cors({
     credentials: true,
 }))
 
-app.use(cookieParser(process.env.COOKIE_SECRET))
+app.use(cookieParser())
 
-app.use('/api/user', userRouter)
-app.use('/api/register', registerRouter)
-app.use('/api/search', searchRouter)
-app.use('/api/email', emailRouter)
+app.use('/user', userRouter)
+app.use('/register', registerRouter)
+app.use('/search', searchRouter)
+app.use('/email', emailRouter)
 
 app.get('/', (req, res) => {
     res.send("API Working")

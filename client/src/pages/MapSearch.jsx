@@ -20,7 +20,7 @@ const MapSearch = () => {
 
     setLoading(true)
     try {
-      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/search/donors?bloodGroup=${encodeURIComponent(bloodGroup)}`)
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/search/donors?bloodGroup=${encodeURIComponent(bloodGroup)}`)
       setDonors(res.data)
     } catch (error) {
       console.log('Error fetching donors : ', error)
@@ -39,7 +39,7 @@ const MapSearch = () => {
     try {
       const token = localStorage.getItem('token')
       const res = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/email/contact-donor`,
+        `${import.meta.env.VITE_BACKEND_URL}/email/contact-donor`,
         { donorId },
         { headers: { Authorization: `Bearer ${token}` } }
       )

@@ -11,7 +11,7 @@ const Dashboard = () => {
   useEffect(()=>{
     const fetchProfile = async () => {
       try{
-        const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/user/profile`,{withCredentials:true})
+        const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/user/profile`,{withCredentials:true})
         setProfile(res.data)
       }
       catch(error){
@@ -31,7 +31,7 @@ const Dashboard = () => {
   }
 
   try {
-    const res = await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/user/delete-profile`, {
+    const res = await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/user/delete-profile`, {
       withCredentials: true,
     });
 
